@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PolDentEx.Models.Doctor>
+
+@{
+    ViewBag.Title = "Lekarze";
+}
+
+<h2>Lekarze</h2>
+
+<button type="button" class="btn btn-default" style="margin: 15px; margin-left: 0px;">
+    @Html.ActionLink("Dodaj nowego lekarza", "Create")
+</button>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DoctorId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DoctorId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DoctorId })
+        </td>
+    </tr>
+}
+
+</table>

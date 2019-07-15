@@ -1,0 +1,267 @@
+﻿@model PolDentEx.Models.Patient
+
+@{
+    ViewBag.Title = "Details";
+
+}
+<link rel="stylesheet" href="~/Content/jaw.css" />
+@section scripts{
+<script>
+
+    var toothArray = @Html.Raw(@ViewBag.Jaw);
+
+    var toothOnClick = function() {
+
+
+    }
+
+
+    $(document).ready(function () {
+        var ul = 0;
+        var ur = 0;
+        var dl = 0;
+        var dr = 0;
+        var mul = 0;
+        var mur = 0;
+        var mdl = 0;
+        var mdr = 0;
+
+
+        for (var i = 0; i < toothArray.length; i++) {
+            if (toothArray[i].Extracted == false && toothArray[i].HumanTooth.IsMilkTooth == false) {
+
+                if (toothArray[i].HumanTooth.ToothName.includes('Down') === true) {
+                    if (toothArray[i].HumanTooth.ToothName.includes('Right') === true) {
+                        $('.jaw-lower.jaw-right').append('<div class="toothLower"><span class="toothLowerTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.lower-right-tooth-id').append('<div class="tooth-id">' + (++dr) + '</div>');
+                    } else {
+                        $('.jaw-lower.jaw-left').append('<div class="toothLower"><span class="toothLowerTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.lower-left-tooth-id').append('<div class="tooth-id">' + (++dl) + '</div>');
+                    }
+
+
+                } else if (toothArray[i].HumanTooth.ToothName.includes('Up') === true) {
+
+                    if (toothArray[i].HumanTooth.ToothName.includes('Right') === true) {
+
+                        $('.jaw-upper.jaw-right').append('<div class="toothUpper"><span class="toothUpperTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.upper-right-tooth-id').append('<div class="tooth-id">' + (++ur) + '</div>');
+                    } else {
+
+                        $('.jaw-upper.jaw-left').append('<div class="toothUpper"><span class="toothUpperTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.upper-left-tooth-id').append('<div class="tooth-id">' + (++ul) + '</div>');
+                    }
+
+                }
+
+            }
+            else if (toothArray[i].Extracted == true && toothArray[i].HumanTooth.IsMilkTooth == false) {
+
+                if (toothArray[i].HumanTooth.ToothName.includes('Down') === true) {
+                    if (toothArray[i].HumanTooth.ToothName.includes('Right') === true) {
+                        $('.jaw-lower.jaw-right').append('<div class="no-tooth-lower"><span class="noToothLowerTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.lower-right-tooth-id').append('<div class="tooth-id">' + (++dr) + '</div>');
+                    } else {
+                        $('.jaw-lower.jaw-left').append('<div class="no-tooth-lower"><span class="noToothLowerTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.lower-left-tooth-id').append('<div class="tooth-id">' + (++dl) + '</div>');
+                    }
+
+
+                } else if (toothArray[i].HumanTooth.ToothName.includes('Up') === true) {
+
+                    if (toothArray[i].HumanTooth.ToothName.includes('Right') === true) {
+                        
+                        $('.jaw-upper.jaw-right').append('<div class="no-tooth-upper"><span class="noToothUpperTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.upper-right-tooth-id').append('<div class="tooth-id">' + (++ur) + '</div>');
+                    } else {
+
+                        $('.jaw-upper.jaw-left').append('<div class="no-tooth-upper"><span class="noToothUpperTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.upper-left-tooth-id').append('<div class="tooth-id">' + (++ul) + '</div>');
+                    }
+
+                }
+            }
+            else if (toothArray[i].Extracted == false && toothArray[i].HumanTooth.IsMilkTooth == true) {
+                if (toothArray[i].HumanTooth.ToothName.includes('Down') === true) {
+                    if (toothArray[i].HumanTooth.ToothName.includes('Right') === true) {
+                        $('.jaw-lower.jaw-right').append('<div class="toothLower"><span class="toothLowerTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.lower-right-tooth-id').append('<div class="tooth-id">' + 'm' + (++mdr) + '</div>');
+                    } else {
+                        $('.jaw-lower.jaw-left').append('<div class="toothLower"><span class="toothLowerTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.lower-left-tooth-id').append('<div class="tooth-id">' + 'm' + (++mdl) + '</div>');
+                    }
+
+
+                } else if (toothArray[i].HumanTooth.ToothName.includes('Up') === true) {
+
+                    if (toothArray[i].HumanTooth.ToothName.includes('Right') === true) {
+
+                        $('.jaw-upper.jaw-right').append('<div class="toothUpper"><span class="toothUpperTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.upper-right-tooth-id').append('<div class="tooth-id">' + 'm' + (++mur) + '</div>');
+                    } else {
+
+                        $('.jaw-upper.jaw-left').append('<div class="toothUpper"><span class="toothUpperTooltip"><div class="btn btn-default">Edytuj</div><hr>' + toothArray[i].HumanTooth.ToothName + " <div>Notka 1: " + toothArray[i].Note1 + "</div><div>Notka 2: " + toothArray[i].Note2 + "</div><div>Notka 3: " + toothArray[i].Note3 + "</div><div>Notka 4: " + toothArray[i].Note4 + '</div></span></div>');
+                        $('.upper-left-tooth-id').append('<div class="tooth-id">' + 'm' + (++mul) + '</div>');
+                    }
+
+                }
+            }
+            else {
+                if (toothArray[i].HumanTooth.ToothName.includes('Down') === true) {
+                    if (toothArray[i].HumanTooth.ToothName.includes('Right') === true) {
+                        ++mdr;
+                    } else {
+                        ++mdl;
+                    }
+
+
+                } else if (toothArray[i].HumanTooth.ToothName.includes('Up') === true) {
+
+                    if (toothArray[i].HumanTooth.ToothName.includes('Right') === true) {
+
+                        ++mur;
+
+                    } else {
+
+                        ++mul;
+
+                    }
+
+                }
+            }
+
+        }
+
+    });
+
+    
+
+</script>
+    
+
+}
+<h2>Szczegóły pacjenta</h2>
+
+<div>
+    <button type="button" class="btn"  onclick="location.href='@Url.Action("GenerateXLSXDocumentation", "Patients", new { id = Model.PatientId })'"><span class="glyphicon glyphicon-save"></span> XLSX</button>
+    <button type="button" class="btn" onclick="location.href='@Url.Action("GeneratePDFDocumentation", "Patients", new { id = Model.PatientId })'"><span class="glyphicon glyphicon-save"></span> PDF</button>
+    <hr />
+    <div class="jaw-section">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="jaw-title">Górna szczęka</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="jaw jaw-upper jaw-left" style="transform: rotate(180deg);transform: scaleY(-1);">
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="jaw jaw-upper jaw-right" style="transform: rotate(180deg);transform: scaleY(-1);">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="z-index:-1;position:relative;">
+                <div class="col-lg-6">
+                    <div class="upper-left-tooth-id">
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="upper-right-tooth-id">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:100px;">
+                <div class="col-lg-12">
+                    <div class="jaw-title" >Dolna szczęka</div>
+                </div>
+            </div>
+            <div class="row" style="position:relative;">
+                <div class="col-lg-6">
+                    <div class="jaw jaw-lower jaw-left">
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="jaw jaw-lower jaw-right">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="z-index:-1;position:relative;">
+                <div class="col-lg-6">
+                    <div class="lower-left-tooth-id">
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="lower-right-tooth-id">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            Lekarz prowadzacy
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.FirstName)
+            @Html.DisplayFor(model=> model.Doctor.LastName)
+        </dd>
+
+        <dt>
+            Szczegóły
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientDetails)
+        </dd>
+
+        <dt>
+            Karta Pacjenta
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientCard)
+        </dd>
+
+        <dt>
+            PESEL
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PESEL)
+        </dd>
+
+        <dt>
+            Data urodzenia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PatientId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script>
+    
+</script>
+
+  

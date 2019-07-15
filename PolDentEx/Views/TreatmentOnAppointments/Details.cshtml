@@ -1,0 +1,42 @@
+﻿@model PolDentEx.Models.TreatmentOnAppointment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TreatmentOnAppointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Appointment.AppointmentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Appointment.AppointmentId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Treatment.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Treatment.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TreatmentOnAppointmentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,139 @@
+﻿.toothUpper {
+    float: left;
+    background-image: url("https://image.ibb.co/mMJ34w/Tooth_icon_done.png");
+    background-repeat: no-repeat;
+    height: 51px;
+    width: 51px;
+}
+
+.no-tooth-upper {
+    float: left;
+    height: 51px;
+    width: 51px;
+}
+
+    .no-tooth-upper .noToothUpperTooltip {
+        visibility: hidden;
+        width: fit-content;
+        height: fit-content;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        border-radius: 6px;
+        margin: 30px;
+        padding: 10px;
+        position: absolute;
+        top: -200px;
+        z-index: 2;
+    }
+
+    .no-tooth-upper:hover .noToothUpperTooltip {
+        visibility: visible;
+        transform: rotate(180deg);
+        transform: scaleY(-1);
+    }
+
+.toothUpper:hover {
+    background-image: url("https://image.ibb.co/jL8BPw/Tooth_icon_done_clicked.png");
+}
+
+.toothUpper .toothUpperTooltip {
+    visibility: hidden;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 6px;
+    margin: 30px;
+    padding: 10px;
+    position: absolute;
+    top: -200px;
+    
+}
+
+.toothUpper:hover .toothUpperTooltip {
+    visibility: visible;
+    transform: rotate(180deg);
+    transform: scaleY(-1);
+
+}
+
+
+.toothLower {
+    float: left;
+    background-image: url("https://image.ibb.co/mMJ34w/Tooth_icon_done.png");
+    background-repeat: no-repeat;
+    height: 51px;
+    width: 51px;
+}
+
+.no-tooth-lower {
+    float: left;
+    height: 51px;
+    width: 51px;
+}
+
+    .no-tooth-lower .noToothLowerTooltip {
+        visibility: hidden;
+        width: fit-content;
+        height: fit-content;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        border-radius: 6px;
+        margin: 30px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .no-tooth-lower:hover .noToothLowerTooltip {
+        visibility: visible;
+    }
+
+.toothLower:hover {
+    background-image: url("https://image.ibb.co/jL8BPw/Tooth_icon_done_clicked.png");
+}
+
+.toothLower .toothLowerTooltip {
+    visibility: hidden;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 6px;
+    margin: 30px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+}
+
+.toothLower:hover .toothLowerTooltip {
+    visibility: visible;
+}
+
+.jaw {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 50, 50, 1) 100%);
+    height: 51px;
+    border-radius: 0px 0px 10px 10px;
+    width: fit-content;
+}
+
+.jaw-title {
+    text-align: center;
+    font-size: 30px;
+    margin: 20px;
+}
+
+.tooth-id {
+    float: left;
+    height: 51px;
+    width: 51px;
+    text-align: center;
+}

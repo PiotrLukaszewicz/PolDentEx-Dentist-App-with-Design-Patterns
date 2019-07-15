@@ -1,0 +1,90 @@
+﻿@model PolDentEx.Models.Patient
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Nowy pacjent</h2>
+        </div>
+        <div class="col-md-offset-2 col-md-2">
+            <button style="margin-top: 30px;" type="button" class="btn btn-default">@Html.ActionLink("Powrót do listy pacjentów", "Index")</button>
+        </div>
+        
+    </div>
+</div>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <h3>@Html.LabelFor(model => model.DoctorId, "Lekarz prowadzący", htmlAttributes: new { @class = "control-label" })</h3>
+                    <div>
+                        @Html.DropDownList("DoctorId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DoctorId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h3>@Html.LabelFor(model => model.PatientDetails, "Dane pacjenta", htmlAttributes: new { @class = "control-label" })</h3>
+                    <div>
+                        @Html.EditorFor(model => model.PatientDetails, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PatientDetails, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PESEL, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.PESEL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PESEL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Date, "Data urodzenia", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <h3>@Html.LabelFor(model => model.PatientCard, "Karta pacjenta", htmlAttributes: new { @class = "control-label" })</h3>
+                    <div>
+                        @Html.EditorFor(model => model.PatientCard, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PatientCard, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsChild, "Czy pacjent posiada mleczne zęby?", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.IsChild, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.IsChild, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <input style="margin-top: 30px;" type="submit" value="Utwórz" class="btn btn-info" />
+    </div>
+        
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

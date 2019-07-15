@@ -1,0 +1,207 @@
+﻿@model PolDentEx.ViewModel.PatientViewModel
+
+@{
+    ViewBag.Title = "Pacjenci";
+}
+@Scripts.Render("~/bundles/dataTable")
+
+<h2>Pacjenci</h2>
+
+<button type="button" class="btn btn-default" style="margin: 15px; margin-left: 0px;">
+    @Html.ActionLink("Dodaj nowego pacjenta", "Create")
+</button>
+
+<table class="table table-striped table-hover" id="patientsDataTable">
+    <thead>
+        <tr>
+            <th>
+                Nazwisko
+            </th>
+            <th>
+                Imię
+            </th>
+            <th>
+               PESEL
+            </th>
+            <th>
+                Lekarz prowadzący
+            </th>
+            <th>
+                Data urodzenia
+            </th>
+            <th>
+                Numer Telefonu
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = item.PatientId }) |
+    @Html.ActionLink("Details", "Details", new { id = item.PatientId }) |
+    @Html.ActionLink("Delete", "Delete", new { id = item.PatientId })*@
+   
+</table>
+
+<script>
+
+    $(document).ready(function () {
+
+        //Tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        //Datatable
+        $('#patientsDataTable').DataTable({
+            "sAjaxSource": '@Url.Action("PatientsListData", "Patients")',
+                "bProcessing": true,
+                "bPaginate": true,
+                "searching": true,
+                "aaSorting": [[0, 'asc']],
+                "lengthMenu": [[15, 25, 50, 100], [15, 25, 50, 100]],
+
+                "language": {
+
+                    "processing": "Przetwarzanie...",
+                    "search": "Szukaj:",
+                    "lengthMenu": "Pokaż _MENU_ pozycji",
+                    "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+                    "infoEmpty": "Pozycji 0 z 0 dostępnych",
+                    "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+                    "infoPostFix": "",
+                    "loadingRecords": "Wczytywanie...",
+                    "zeroRecords": "Nie znaleziono pasujących pozycji",
+                    "emptyTable": "Brak danych",
+                    "paginate": {
+                        "first": "Pierwsza",
+                        "previous": "Poprzednia",
+                        "next": "Następna",
+                        "last": "Ostatnia"
+                    },
+                    "aria": {
+                        "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+                        "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+                    }
+                },
+
+                "columnDefs": [
+                    {
+                        "data": "Nazwisko",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [0],
+                        render: function (data, type, row){
+                            var value = "---";
+                            if (row.Surname != null)
+                            {
+                                value = row.Surname;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "data": "Imię",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [1],
+                        render: function (data, type, row) {
+                            var value = "---";
+                            if (row.Name != null) {
+                                value = row.Name;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "data": "PESEL",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [2],
+                        render: function (data, type, row) {
+                            var value = "---";
+                            if (row.PESEL != null) {
+                                value = row.PESEL;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "data": "Lekarz prowadzący",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [3],
+                        render: function (data, type, row) {
+                            var value = "---";
+                            if (row.DoctorNameAndSurname != null) {
+                                value = row.DoctorNameAndSurname;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "data": "Data urodzenia",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [4],
+                        render: function (data, type, row) {
+                            var value = "---";
+                            if (row.DateOfBirth != null) {
+                                value = row.DateOfBirth;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "data": "Numer telefonu",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [5],
+                        render: function (data, type, row) {
+                            var value = "---";
+                            if (row.PhoneNumber != null) {
+                                value = row.PhoneNumber;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "className": "dt-center",
+                        "orderable": false,
+                        "visible": true,
+                        "targets": [6],
+                        render: function (data, type, row) {
+                            var value = "";
+                            if (row.PatientId != null) {
+                                var string = "  <button style=\"height: 23px; width: 23px; margin : 5px; padding:0px;\"  type=\"button\" class=\"btn\" onclick=\"location.href ='  ";
+                                string += " @Url.Action("Details", "Patients")/";
+                                string += row.PatientId;
+                                string += "  '\" > <span   style=\"font-size:10px\" class=\"glyphicon glyphicon-search\"></span></button> ";
+
+                                var string = "  <button style=\"height: 23px; width: 23px; margin : 5px; padding:0px;\"  type=\"button\" class=\"btn\" onclick=\"location.href ='  ";
+                                string += " @Url.Action("FastOverview", "Patients")/";
+                                string += row.PatientId;
+                                string += "  '\" > <span   style=\"font-size:10px\" class=\"glyphicon glyphicon-ok-sign\"></span></button> ";
+
+                                @*string += "  <button style=\"height: 23px; width: 23px; margin : 5px; padding:0px;\"  type=\"button\" class=\"btn\" onclick=\"location.href ='  ";
+                                string += " @Url.Action("Edit", "Patients")/";
+                                string += row.PatientId;
+                                string += "  '\" > <span   style=\"font-size:10px\" class=\"glyphicon glyphicon-pencil\"></span></button>";*@
+
+                                string += "  <button style=\"height: 23px; width: 23px; margin : 5px; padding:0px;\"  type=\"button\" class=\"btn\" onclick=\"location.href ='  ";
+                                string += " @Url.Action("Details", "Patients")/";
+                                string += row.PatientId;
+                                string += "  '\" > <span   style=\"font-size:10px\" class=\"glyphicon glyphicon-search\"></span></button>";
+
+                                value = string;
+                            }
+                            return value;
+                        }
+                    }
+                ]
+            });
+        });
+</script>

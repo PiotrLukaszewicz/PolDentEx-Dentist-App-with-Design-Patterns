@@ -1,0 +1,215 @@
+﻿@model IEnumerable<PolDentEx.Models.Appointment>
+
+@{
+    ViewBag.Title = "Wizyty";
+}
+@Scripts.Render("~/bundles/dataTable")
+<h2>Wizyty</h2>
+
+<button type="button" class="btn btn-default" style="margin: 15px; margin-left: 0px;">
+    @Html.ActionLink("Dodaj nową wizytę", "Create")
+</button>
+
+<table class="table" id="appointmentsDataTable">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Doctor.FirstName)*@
+                Lekarz
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Patient.PatientDetails.FirstName)*@
+                Pacjent
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Patient.PESEL)*@
+                Pesel
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Type)*@
+                Typ wizyty
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Date)*@
+                Data
+            </th>
+            <th></th>
+        </tr>
+</thead>
+   
+    
+
+    @*@foreach (var item in Model)
+    {
+        @*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.FirstName) @Html.DisplayFor(modelItem => item.Doctor.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.PatientDetails.FirstName) @Html.DisplayFor(modelItem => item.Patient.PatientDetails.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.PESEL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.AppointmentId}) |
+                @Html.ActionLink("Details", "Details", new {id = item.AppointmentId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.AppointmentId})
+            </td>
+        </tr>
+    }*@
+
+</table>
+<script>
+
+    $(document).ready(function () {
+
+        //Tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        //Datatable
+        $('#appointmentsDataTable').DataTable({
+            "sAjaxSource": '@Url.Action("AppointmentsListData", "Appointments")',
+                "bProcessing": true,
+                "bPaginate": true,
+                "searching": true,
+                "aaSorting": [[0, 'asc']],
+                "lengthMenu": [[15, 25, 50, 100], [15, 25, 50, 100]],
+
+                "language": {
+
+                    "processing": "Przetwarzanie...",
+                    "search": "Szukaj:",
+                    "lengthMenu": "Pokaż _MENU_ pozycji",
+                    "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+                    "infoEmpty": "Pozycji 0 z 0 dostępnych",
+                    "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+                    "infoPostFix": "",
+                    "loadingRecords": "Wczytywanie...",
+                    "zeroRecords": "Nie znaleziono pasujących pozycji",
+                    "emptyTable": "Brak danych",
+                    "paginate": {
+                        "first": "Pierwsza",
+                        "previous": "Poprzednia",
+                        "next": "Następna",
+                        "last": "Ostatnia"
+                    },
+                    "aria": {
+                        "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+                        "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+                    }
+                },
+
+                "columnDefs": [
+                    {
+                        "data": "Lekarz",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [0],
+                        render: function (data, type, row){
+                            var value = "---";
+                            if (row.DoctorNameAndSurname != null)
+                            {
+                                value = row.DoctorNameAndSurname;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "data": "Pacjent",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [1],
+                        render: function (data, type, row) {
+                            var value = "---";
+                            if (row.PatientNameAndSurname != null) {
+                                value = row.PatientNameAndSurname;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "data": "PESEL",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [2],
+                        render: function (data, type, row) {
+                            var value = "---";
+                            if (row.PESEL != null) {
+                                value = row.PESEL;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "data": "Typ Wizyty",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [3],
+                        render: function (data, type, row) {
+                            var value = "---";
+                            if (row.AppointmentType != null) {
+                                value = row.AppointmentType;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "data": "Data",
+                        "className": "dt-center",
+                        "orderable": true,
+                        "visible": true,
+                        "targets": [4],
+                        render: function (data, type, row) {
+                            var value = "---";
+                            if (row.AppointmentDate != null) {
+                                value = row.AppointmentDate;
+                            }
+                            return value;
+                        }
+                    },
+                    {
+                        "className": "dt-center",
+                        "orderable": false,
+                        "visible": true,
+                        "targets": [5],
+                        render: function (data, type, row) {
+                            var value = "";
+                            if (row.AppointmentId != null) {
+                                var string = "  <button style=\"height: 23px; width: 23px; margin : 5px; padding:0px;\"  type=\"button\" class=\"btn\" onclick=\"location.href ='  ";
+                                string += " @Url.Action("Details", "Appointments")/";
+                                string += row.AppointmentId;
+                                string += "  '\" > <span   style=\"font-size:10px\" class=\"glyphicon glyphicon-search\"></span></button> ";
+
+
+                                @*string += "  <button style=\"height: 23px; width: 23px; margin : 5px; padding:0px;\"  type=\"button\" class=\"btn\" onclick=\"location.href ='  ";
+                                string += " @Url.Action("Edit", "Appointments")/";
+                                string += row.AppointmentId;
+                                string += "  '\" > <span   style=\"font-size:10px\" class=\"glyphicon glyphicon-pencil\"></span></button>";*@
+
+                                string += "  <button style=\"height: 23px; width: 23px; margin : 5px; padding:0px;\"  type=\"button\" class=\"btn\" onclick=\"location.href ='  ";
+                                string += " @Url.Action("Delete", "Appointments")/";
+                                string += row.AppointmentId;
+                                string += "  '\" > <span   style=\"font-size:10px\" class=\"glyphicon glyphicon-remove\"></span></button>";
+
+                                value = string;
+                            }
+                            return value;
+                        }
+                    }
+                ]
+            });
+
+
+        });
+</script>

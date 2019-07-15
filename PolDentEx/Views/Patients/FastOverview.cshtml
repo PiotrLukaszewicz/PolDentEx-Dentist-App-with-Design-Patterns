@@ -1,0 +1,25 @@
+﻿@model PolDentEx.Models.Tooth
+
+@{
+    ViewBag.Title = "Fast Overview";
+}
+
+<h2>FastOverview</h2>
+
+@using (Html.BeginForm("FastOverviewNext", "Patients"))
+{
+    @Html.HiddenFor(m => m.Note1)
+    @Html.HiddenFor(m => m.Note2)
+    @Html.HiddenFor(m => m.Note3)
+    @Html.HiddenFor(m => m.ToothId)
+
+    @Html.ActionLink("Cofnij", "FastOverviewBack", "Patients")
+    <br />
+
+    @Html.Label("Numer zęba: " + Model.HumanToothId)
+    <br />
+    @Html.Label("Notatka:")
+    @Html.TextBoxFor(e => e.Note4)
+    <br />
+    <input type="submit" value="Następny ząb" />
+}
